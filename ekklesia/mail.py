@@ -263,13 +263,11 @@ class SMTPOutput(MessageOutput):
         keyfile=None,certfile=None,ca_certs=None,cert_reqs=None):
         from kryptomime.transport import SMTP_TLS
         self.smtp = SMTP_TLS(host,port)
-        self.smtp.starttls(keyfile=keyfile,certfile=certfile,cert_reqs=cert_reqs,ca_certs=ca_certs)
         self.user = user
         self.password = password
 
     def open(self):
         self.smtp.ehlo()
-        self.smtp.login(self.user, self.password)
         return True
 
     def close(self):
